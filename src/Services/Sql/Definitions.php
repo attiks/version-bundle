@@ -25,10 +25,16 @@ class Definitions
     const TRIGGER_NAME_BEFORE_UPDATE_SET_VERSION = 'BUSV';
     /** @var string insert in table version on update */
     const TRIGGER_NAME_AFTER_UPDATE_INSERT_VERSION = 'APIV';
+    /** @var string insert in table version on update */
+    const TRIGGER_NAME_AFTER_DELETE_MARK_DELETED = 'ADMD';
     /** @var string postix for version table */
     const VERSION_TABLE_NAME_POSTFIX = '_version';
     /** @var string sql create version table */
     const SQL_CREATE_TABLE = 'CREATE TABLE `%s`.`%s` AS SELECT * FROM `%s`.`%s`;';
+    /** @var string version timestamp */
+    const SQL_VERSION_TS = 'ALTER TABLE `%s`.`%s` ADD ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP';
+    /** @var string version delete */
+    const SQL_VERSION_DELETED = 'ALTER TABLE `%s`.`%s` ADD deleted BOOL DEFAULT 0';
     /** @var string sql alter table add primary keys to version table */
     const SQL_ADD_PK_TO_VERSION = 'ALTER TABLE `%s`.`%s` ADD PRIMARY KEY (`id`,`version`);';
     /** @var string sql add constraint to version */

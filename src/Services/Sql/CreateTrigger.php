@@ -66,6 +66,7 @@ EOF;
         $sql[] = $this->createTriggerAfterInsert($tableName);
         $sql[] = $this->createTriggerBeforeUpdate($tableName);
         $sql[] = $this->createTriggerAfterUpdate($tableName);
+        $sql[] = $this->createTriggerAfterDelete($tableName, $databaseName, $versionTableName);
         return $sql;
     }
 
@@ -130,6 +131,21 @@ EOF;
         $triggerName = parent::TRIGGER_NAME_AFTER_UPDATE_INSERT_VERSION;
         $createStatement = sprintf($this->fCreateSql, $triggerName);
         $eventStatement = "AFTER UPDATE";
+        return sprintf($this->fTriggerSql, $createStatement, $eventStatement, $tableName, $this->triggerBody);
+    }
+
+    /**
+     * mark version as deleted by delete
+     *
+     * @param string $tableName
+     * @return string
+     */
+    private function createTriggerAfterDelete(string $tableName, string $databaseName, string $versionTableName): string
+    {
+        $triggerName = parent::TRIGGER_NAME_AFTER_DELETE_MARK_DELETED;
+        $createStatement = sprintf($this->fCreateSql, $triggerName);
+        $eventStatement = "AFTER DELETE";
+        $this->triggerBody = sprintf("UPDATE `%s`.`%s` SET deleted = 1 WHERE id = OLD.id;", $databaseName, $versionTableName);
         return sprintf($this->fTriggerSql, $createStatement, $eventStatement, $tableName, $this->triggerBody);
     }
 

@@ -39,10 +39,10 @@ class VersionTable extends Definitions
         $this->database = $databaseName;
         $sql = [];
         $sql[] = $this->sqlCreate();
+        $sql[] = $this->sqlVersionTimestamp();
+        $sql[] = $this->sqlVersionDelete();
         $sql[] = $this->sqlPk();
-        $sql[] = $this->sqlConstraint();
         return $sql;
-
     }
 
     /** drop version table
@@ -69,18 +69,25 @@ class VersionTable extends Definitions
     /**
      * @return string
      */
-    private function sqlPk(): string
+    private function sqlVersionTimestamp(): string
     {
-        return sprintf(parent::SQL_ADD_PK_TO_VERSION, $this->database, $this->version);
+        return sprintf(parent::SQL_VERSION_TS, $this->database, $this->version);
     }
 
     /**
      * @return string
      */
-    private function sqlConstraint(): string
+    private function sqlVersionDelete(): string
     {
-        return sprintf(parent::SQL_ADD_CONSTRAINT, $this->database, $this->version, $this->version, $this->table);
+        return sprintf(parent::SQL_VERSION_DELETED, $this->database, $this->version);
     }
 
+    /**
+     * @return string
+     */
+    private function sqlPk(): string
+    {
+        return sprintf(parent::SQL_ADD_PK_TO_VERSION, $this->database, $this->version);
+    }
 
 }
