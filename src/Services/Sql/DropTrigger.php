@@ -74,6 +74,17 @@ class DropTrigger extends Definitions
     }
 
     /**
+     * dropping trigger "delete in table version on delete"
+     *
+     * @return string
+     */
+    private function dropTriggerAfterDelete(): string
+    {
+        $triggerName = parent::TRIGGER_NAME_AFTER_DELETE_MARK_DELETED;
+        return sprintf($this->fDrop, $triggerName);
+    }
+
+    /**
      * generates sql-Statement for dropping triggers
      * @param string $databaseName
      * @param string $tableName
@@ -87,6 +98,7 @@ class DropTrigger extends Definitions
         $sql[] = $this->dropTriggerAfterInsert();
         $sql[] = $this->dropTriggerBeforeUpdate();
         $sql[] = $this->dropTriggerAfterUpdate();
+        $sql[] = $this->dropTriggerAfterDelete();
         return $sql;
     }
 }

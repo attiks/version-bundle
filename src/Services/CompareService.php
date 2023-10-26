@@ -36,6 +36,9 @@ class CompareService
         if (is_array($excludeColumnNames) && 0 < count($excludeColumnNames)) {
             $this->excludeColumnNames = $excludeColumnNames;
         }
+
+        // Always exclude ts and deleted.
+        $this->excludeColumnNames = array_merge($this->excludeColumnNames, ['ts', 'deleted']);
     }
 
     /**
