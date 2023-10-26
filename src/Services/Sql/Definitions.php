@@ -18,13 +18,13 @@ use Doctrine\DBAL\Schema\Table;
 class Definitions
 {
     /** @var string  setting version to int 1 before insert */
-    const TRIGGER_NAME_BEFORE_INSERT_SET_VERSION = 'BEVOR_INSERT_SET_VERSION';
+    const TRIGGER_NAME_BEFORE_INSERT_SET_VERSION = 'BISV';
     /** @var string  create first entry in table version */
-    const TRIGGER_NAME_AFTER_INSERT_INSERT_VERSION = 'AFTER_INSERT_INSERT_VERSION';
+    const TRIGGER_NAME_AFTER_INSERT_INSERT_VERSION = 'AIIV';
     /** @var string increment column version before update */
-    const TRIGGER_NAME_BEFORE_UPDATE_SET_VERSION = 'BEFORE_UPDATE_SET_VERSION';
+    const TRIGGER_NAME_BEFORE_UPDATE_SET_VERSION = 'BUSV';
     /** @var string insert in table version on update */
-    const TRIGGER_NAME_AFTER_UPDATE_INSERT_VERSION = 'AFTER_UPDATE_INSERT_VERSION';
+    const TRIGGER_NAME_AFTER_UPDATE_INSERT_VERSION = 'APIV';
     /** @var string postix for version table */
     const VERSION_TABLE_NAME_POSTFIX = '_version';
     /** @var string sql create version table */
