@@ -28,7 +28,7 @@ final class MakeVersionStandaloneCommand extends MakeVersionCommand
     private EntityManagerInterface $entityManager;
     protected static $defaultName = 'netbrothers:version-standalone';
 
-    protected function configure()
+    protected function configure() : void
     {
         parent::configure();
         $this->addOption(

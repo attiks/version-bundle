@@ -55,7 +55,7 @@ class MakeVersionCommand extends Command
     private $entityManager;
 
     /** configuration */
-    protected function configure()
+    protected function configure() : void
     {
         $this
             ->setDescription('Create version tables and triggers.')

@@ -22,7 +22,7 @@ class NetBrothersVersionExtension extends Extension
      * @param ContainerBuilder $container
      * @throws \Exception When provided tag is not defined in this extension
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container) : void
     {
         $loader = new XmlFileLoader(
             $container,
