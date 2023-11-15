@@ -7,6 +7,7 @@ namespace NetBrothers\VersionBundle\Command;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -18,6 +19,10 @@ use Symfony\Component\Console\Output\OutputInterface;
  * @copyright © 2021 NetBrothers GmbH.
  * @license MIT
  */
+#[AsCommand(
+    name: 'netbrothers:version-standalone',
+    description: 'Creates version tables.',
+)]
 final class MakeVersionStandaloneCommand extends MakeVersionCommand
 {
     private EntityManagerInterface $entityManager;

@@ -14,6 +14,7 @@ use NetBrothers\VersionBundle\Services\CompareService;
 use NetBrothers\VersionBundle\Services\GenerateService;
 use NetBrothers\VersionBundle\Services\JobService;
 use NetBrothers\VersionBundle\Services\Sql\ExecuteService;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\InputArgument;
@@ -26,6 +27,10 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  * Class MakeVersionCommand
  * @package NetBrothers\VersionBundle\Command
  */
+#[AsCommand(
+    name: 'netbrothers:version',
+    description: 'Creates version tables.',
+)]
 class MakeVersionCommand extends Command
 {
     /** @inheritdoc */
